@@ -49,7 +49,7 @@ const proveArgs = await publicClientL2.buildProveWithdrawal({
   withdrawal,
 })
 
-const functionData = encodeFunctionData({
+const proveWithdrawalFunctionData = encodeFunctionData({
   abi: optimismPortal2Abi,
   functionName: 'proveWithdrawalTransaction',
   args: [
@@ -60,8 +60,20 @@ const functionData = encodeFunctionData({
   ],
 })
 
-// tx to send
+// tx to send to prove
 // {
 //   to: optimismPortal2Address, // for the chain's portal contract
-//   data: functionData,
+//   data: proveWithdrawalFunctionData,
+// }
+
+const finalizeFunctionData = encodeFunctionData({
+  abi: optimismPortal2Abi,
+  functionName: 'finalizeWithdrawalTransaction',
+  args: [withdrawal],
+})
+
+// tx to finalize
+// {
+//   to: optimismPortal2Address, // for the chain's portal contract
+//   data: finalizeFunctionData,
 // }
